@@ -1,11 +1,7 @@
 pipeline {
 
-node('aaa') {
-   	 env.JAVA_HOME="${tool 'jdk8'}"
-   	 env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
-  	 sh 'java -version'
-}
-    agent any
+
+	 agent any
 
 
     tools {
@@ -15,8 +11,12 @@ node('aaa') {
 
     stages {
         stage('Install') {
-	label 'aaa'
+
             steps {
+	       	 env.JAVA_HOME="${tool 'jdk8'}"
+   	 env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+  	 sh 'java -version'
+
             	 sh "mvn clean test"
             }
             post {
