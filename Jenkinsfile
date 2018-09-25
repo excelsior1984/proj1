@@ -1,20 +1,18 @@
 pipeline {
     agent any
-
+    tools {
+        jdk 'jdk8'
+        maven 'maven3'
+    }
     stages {
-        stage('Build') {
+        stage('Install') {
             steps {
-                echo 'Building..'
+                sh "mvn clean test"
             }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+            post {
+                always {
+                    junit '**/target/*-reports/TEST-*.xml'
+                }
             }
         }
     }
