@@ -18,7 +18,7 @@ stages {
            steps {
   	       sh 'java -version'
 	       echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
-	       echo "JAVA_HOME= " ${env.JAVA_HOME} " PATH= " ${env.JAVA_HOME}/bin:${env.PATH}
+	       echo "JAVA_HOME= " ${env.JAVA_HOME} " PATH= " ${env.JAVA_HOME}"/bin:"${env.PATH}
 //            	 sh "mvn clean test"
            }
 	   post {
