@@ -18,11 +18,10 @@ pipeline {
         stage('Install') {
 
             steps {
-//	       	 env.JAVA_HOME="${tool 'jdk8'}"
-//   	 env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
-//  	 sh 'java -version'
+	    //  	 sh 'java -version'
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
-            	 sh "mvn clean test"
+		echo env.JAVA_HOME
+//            	 sh "mvn clean test"
             }
             post {
                 always {
