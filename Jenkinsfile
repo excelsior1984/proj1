@@ -6,13 +6,12 @@ pipeline {
     }
     stages {
         stage('Install') {
-	    node 'localhost' {
-    	    	 env.JAVA_HOME="${tool 'jdk8'}"
+
+            steps {
+      	    	 env.JAVA_HOME="${tool 'jdk8'}"
     	    	 env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     	    	 sh 'java -version'
-	    }
-            steps {
-                sh "mvn clean test"
+            	 sh "mvn clean test"
             }
             post {
                 always {
