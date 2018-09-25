@@ -1,17 +1,16 @@
 pipeline {
-    agent {
-    	  node 'localhost' {
-    	       env.JAVA_HOME="${tool 'jdk8'}"
-    	       env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
-    	       sh 'java -version'
-	  }
-    }
+    agent any
     tools {
         jdk 'jdk8'
         maven 'maven3'
     }
     stages {
         stage('Install') {
+	    node 'localhost' {
+    	    	 env.JAVA_HOME="${tool 'jdk8'}"
+    	    	 env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+    	    	 sh 'java -version'
+	    }
             steps {
                 sh "mvn clean test"
             }
