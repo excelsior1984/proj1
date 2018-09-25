@@ -3,8 +3,6 @@ node {
    	 env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
   	 sh 'java -version'
 
-pipeline {
-
     agent any
 
 
@@ -25,5 +23,4 @@ pipeline {
             }
         }
     }
-}
 }
