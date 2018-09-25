@@ -1,16 +1,16 @@
 pipeline {
+
     agent any
+
+   	 env.JAVA_HOME="${tool 'jdk8'}"
+   	 env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+  	 sh 'java -version'
+
     tools {
         jdk 'jdk8'
         maven 'maven3'
     }
-    node { stage("Install") {
-   	 env.JAVA_HOME="${tool 'jdk8'}"
-   	 env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
-    	 sh 'java -version'
 
-    }
-    }
     stages {
         stage('Install') {
             steps {
