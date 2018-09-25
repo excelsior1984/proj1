@@ -10,6 +10,7 @@ pipeline {
     	 sh 'java -version'
 
     }
+    }
     stages {
         stage('Install') {
             steps {
