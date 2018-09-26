@@ -19,7 +19,7 @@ stages {
   	       sh 'java -version'
 	       echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
 	       echo "JAVA_HOME=  ${env.JAVA_HOME}  PATH=  ${env.PATH}"
-               sh "mvn clean test"
+               sh "mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml"
            }
 	   post {
 	   	always {
