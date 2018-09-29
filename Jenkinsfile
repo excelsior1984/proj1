@@ -14,12 +14,17 @@ tools {
 }
 
 stages {
-      stage('Install') {
+      stage('install and sonar parallel') {
            steps {
-  	       sh 'java -version'
-	       echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
-	       echo "JAVA_HOME=  ${env.JAVA_HOME}  PATH=  ${env.PATH}"
-               sh "mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml"
+	   parallel(install: {
+  	          sh 'java -version'
+	          echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+	          echo "JAVA_HOME=  ${env.JAVA_HOME}  PATH=  ${env.PATH}"
+	          sh "mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml"
+	       }, sonar: {
+                   sh "mvn sonar:sonar -Dsonar.host.url=${env.SONARQUBE_HOST}"
+	       } 
+	       
            }
 	   post {
 	   	always {
@@ -28,10 +33,6 @@ stages {
 		}
            }
        }
-       stage('Sonar') {
-          steps {
-                sh "mvn sonar:sonar -Dsonar.host.url=${env.SONARQUBE_HOST}"
-            }
-        }
+
 }
 }
