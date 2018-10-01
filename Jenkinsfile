@@ -33,6 +33,10 @@ stages {
 		}
            }
        }
-
+       stage('deploy') {
+          steps {
+              sh "mvn deploy -DskipTests"
+            }
+        }
 }
 }
