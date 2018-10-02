@@ -15,4 +15,18 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+<distributionManagement>
+    <repository>
+        <id>central</id>
+        <name>0af0264a374e-releases</name>
+        <url>http://172.17.0.2:8081/artifactory/repo1</url>
+    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>0af0264a374e-snapshots</name>
+        <url>http://172.17.0.2:8081/artifactory/repo1</url>
+    </snapshotRepository>
+</distributionManagement>
+
 </project>
