@@ -35,7 +35,7 @@ stages {
        }
        stage('deploy') {
            steps{
-               configFileProvider([configFile(fileId: 'our_settings', variable: 'SETTINGS')]) {
+               configFileProvider([configFile(fileId: 'settings.xml', variable: 'SETTINGS')]) {
                     sh "mvn -s $SETTINGS deploy -DskipTests -Dartifactory_url=${env.ARTIFACTORY_URL}"
                 }
             }
