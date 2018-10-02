@@ -34,8 +34,10 @@ stages {
            }
        }
        stage('deploy') {
-          steps {
-              sh "mvn deploy -DskipTests"
+           steps{
+               configFileProvider([configFile(fileId: 'our_settings', variable: 'SETTINGS')]) {
+                    sh "mvn -s $SETTINGS deploy -DskipTests -Dartifactory_url=${env.ARTIFACTORY_URL}"
+                }
             }
         }
 }
