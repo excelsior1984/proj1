@@ -35,10 +35,12 @@ stages {
        }
        stage('deploy') {
            steps{
-               configFileProvider([configFile(fileId: 'settings.xml', variable: 'SETTINGS')]) {
-                    sh "mvn -s $SETTINGS deploy -DskipTests -Dartifactory_url=${env.ARTIFACTORY_URL}"
-                }
-            }
-        }
+		 configFileProvider(
+		         [configFile(fileId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
+			 	sh 'mvn -s $MAVEN_SETTINGS clean package'
+	#                    sh "mvn -s $SETTINGS deploy -DskipTests -Dartifactory_url=${env.ARTIFACTORY_URL}"
+    			 }
+          }
+      }
 }
 }
