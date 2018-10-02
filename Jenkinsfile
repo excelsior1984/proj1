@@ -15,15 +15,19 @@ tools {
 
 stages {
 
-       
-       stage('deploy') {
-           steps{
-		 configFileProvider(
-		         [configFile(fileId: 'settings.xml')]) {
-			 	sh 'mvn clean package'
-	//                    sh "mvn -s $SETTINGS deploy -DskipTests -Dartifactory_url=${env.ARTIFACTORY_URL}"
-    			 }
-          }
-      }
+        stage ('deploy'){
+
+            steps{
+
+                configFileProvider([configFile(fileId: '49a1c083-fc08-4126-99e8-c25b786e72c6', variable: 'SETTINGS')]) {
+
+                    sh "mvn -s $SETTINGS deploy -DskipTests -Dartifactory_url=${env.ARTIFACTORY_URL}"
+
+                }
+
+            }
+
+        }
+
 }
 }
