@@ -14,7 +14,8 @@ tools {
 }
 
 stages {
-      stage('install and sonar parallel') {
+/*
+       stage('install and sonar parallel') {
            steps {
 	   parallel(install: {
   	          sh 'java -version'
@@ -33,11 +34,12 @@ stages {
 		}
            }
        }
+*/       
        stage('deploy') {
            steps{
 		 configFileProvider(
-		         [configFile(fileId: 'settings.xml', variable: 'MAVEN_SETTINGS')]) {
-			 	sh 'mvn -s $MAVEN_SETTINGS clean package'
+		         [configFile(fileId: 'settings.xml')]) {
+			 	sh 'mvn clean package'
 	//                    sh "mvn -s $SETTINGS deploy -DskipTests -Dartifactory_url=${env.ARTIFACTORY_URL}"
     			 }
           }
