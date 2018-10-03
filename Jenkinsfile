@@ -31,14 +31,14 @@ stages {
        }
        stage('Sonar') {
           steps {
-                sh "mvn sonar:sonar -Dsonar.host.url=${env.SONARQUBE_HOST}"
+                sh "mvn sonar:sonar"
             }
         }
 
         stage ('deploy'){
             steps{
                 configFileProvider([configFile(fileId: '49a1c083-fc08-4126-99e8-c25b786e72c6', variable: 'SETTINGS')]) {
-                    sh "mvn -s $SETTINGS deploy -DskipTests -Dartifactory_url=${env.ARTIFACTORY_URL}"
+                    sh "mvn -s $SETTINGS deploy -DskipTests "
                 }
             }
         }
